@@ -7,6 +7,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*"],
+      "exclude_globs": ["*vk.com*"],
       "js": ["katakanizer.js"],
       "run_at": "document_end"
     }
