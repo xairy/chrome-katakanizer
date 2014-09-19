@@ -1,0 +1,15 @@
+{
+  "name": "Chrome Katakanizer",
+  "version": "0.0.1",
+  "permissions": [
+    "tabs", "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["katakanizer.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "manifest_version": 2
+}
