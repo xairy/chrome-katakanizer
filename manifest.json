@@ -1,16 +1,20 @@
 {
-  "name": "Chrome Katakanizer",
+  "name": "Katakanizer",
   "version": "0.0.1",
   "permissions": [
-    "tabs", "http://*/*"
+    "tabs", "http://*/*", "https://*/*", "storage"
   ],
   "content_scripts": [
     {
-      "matches": ["http://*/*"],
+      "matches": ["http://*/*", "https://*/*"],
       "exclude_globs": ["*vk.com*"],
       "js": ["katakanizer.js"],
       "run_at": "document_end"
     }
   ],
+  "browser_action": {
+    "default_icon": "logo.png",
+    "default_popup": "popup.html"
+  },
   "manifest_version": 2
 }
