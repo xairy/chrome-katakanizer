@@ -1,19 +1,22 @@
 chrome.storage.local.get("enabled", function (result) {
   if (result.enabled == "true") {
-    katakanize();
+    katakanize_html();
   }
 });
 
-function katakanize() {
-  var html = document.body.innerHTML;
+var frequency = 0.75;
+var counter = 0;
 
-  var dictionary = {
+function katakanize_text(text) {
+  var dictBase = {
      "ка": "カ", "ки": "キ", "ку": "ク", "ке": "ケ", "кэ": "ケ", "ко": "コ",
      "са": "サ", "си": "シ", "су": "ス", "се": "セ", "сэ": "セ", "со": "ソ",
      "та": "タ", "ти": "チ", "тсу": "ツ", "те": "テ", "тэ": "テ", "то": "ト",
      "на": "ナ", "ни": "ニ", "ну": "ヌ", "не": "ネ", "нэ": "ネ", "но": "ノ",
      "ха": "ハ", "хи": "ヒ", "фу": "フ", "хе": "ヘ", "хэ": "ヘ", "хо": "ホ"
   };
+
+  var dictionary = $.extend({}, dictBase);
 
   var regex = "";
 
@@ -29,10 +32,7 @@ function katakanize() {
     }
   }
 
-  var frequency = 0.75;
-  var counter = 0;
-
-  html = html.replace(new RegExp(regex, "g"), function(matched) {
+  text = text.replace(new RegExp(regex, "g"), function(matched) {
     counter++;
     if (counter >= (1.0 / frequency)) {
       counter = 0;
@@ -41,5 +41,11 @@ function katakanize() {
     return matched;
   });
 
+  return text;
+}
+
+function katakanize_html() {
+  var html = document.body.innerHTML;
+  html = katakanize_text(html);
   document.body.innerHTML = html;
 }
