@@ -1,6 +1,16 @@
 {
+  "manifest_version": 2,
   "name": "Katakanizer",
   "version": "0.0.1",
+
+  "description": "An extension that replaces some Russian syllables with the matching kana.",
+  "icons": {
+    "128": "logo.png"
+  },
+
+  "author": "Andrey Konovalov <adech.fo@gmail.com>",
+  "homepage_url": "https://github.com/xairy/chrome-katakanizer",
+
   "permissions": [
     "tabs", "http://*/*", "https://*/*", "storage"
   ],
@@ -15,6 +25,5 @@
   "browser_action": {
     "default_icon": "logo.png",
     "default_popup": "popup.html"
-  },
-  "manifest_version": 2
+  }
 }
