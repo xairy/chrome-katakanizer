@@ -3,7 +3,7 @@
   "name": "Katakanizer",
   "version": "0.0.1",
 
-  "description": "An extension that replaces some Russian syllables with the matching kana.",
+  "description": "An extension that replaces some Russian syllables with the matching Japanese kana.",
   "icons": {
     "128": "logo.png"
   },
