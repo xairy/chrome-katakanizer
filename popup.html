@@ -4,41 +4,19 @@
   <head>
     <title>Katakanizer Popup</title>
 
-    <style>
-      body {
-        overflow: hidden;
-        margin: 0px;
-        padding: 0px;
-        background: white;
-      }
-
-      div:first-child {
-        margin-top: 0px;
-      }
-
-      div {
-        cursor: pointer;
-        text-align: center;
-        padding: 3px 3px;
-        width: 150px;
-        margin-top: 1px;
-        background: #cccccc;
-      }
-      div:hover {
-        background: #aaaaaa;
-      }
-    </style>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   </head>
 
   <body>
-    <div id="enable">Enable</div>
-    <div id="disable">Disable</div>
+    <div class="btn-group-vertical">
+      <button type="button" class="btn btn-success" id="enable">Enable</button>
+      <button type="button" class="btn btn-warning" id="disable">Disable</button>
+      <button type="button" class="btn btn-success" id="enable-site">Enable on this site</button>
+      <button type="button" class="btn btn-warning" id="disable-site">Disable on this site</button>
+      <button type="button" class="btn btn-info"    id="options">Options</button>
+    </div>
 
-    <div id="enable-site">Enable on this site</div>
-    <div id="disable-site">Disable on this site</div>
-
-    <div id="options">Options</div>
-
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="jquery/jquery-2.1.1.min.js"></script>
     <script src="popup.js"></script>
   </body>

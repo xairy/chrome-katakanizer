@@ -1,3 +1,9 @@
+function urlToHost(url) {
+    var link = document.createElement("a");
+    link.href = url;
+    return link.host;
+};
+
 $("#enable").click(function() {
   chrome.storage.local.set({"enabled": true});
   window.close();
@@ -9,24 +15,26 @@ $("#disable").click(function() {
 });
 
 $("#enable-site").click(function() {
-  chrome.storage.local.get({"ignore": {}, "last_site": ""}, function (result) {
-    if (result.last_site != "") {
+  chrome.storage.local.get({"ignore": {}}, function (result) {
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
+      var host = urlToHost(tabs[0].url);
       var ignore = result.ignore;
-      delete ignore[result.last_site];
+      delete ignore[host];
       chrome.storage.local.set({"ignore": ignore});
-    }
-    window.close();
+      window.close();
+    });
   });
 });
 
 $("#disable-site").click(function() {
-  chrome.storage.local.get({"ignore": {}, "last_site": ""}, function (result) {
-    if (result.last_site != "") {
+  chrome.storage.local.get({"ignore": {}}, function (result) {
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
+      var host = urlToHost(tabs[0].url);
       var ignore = result.ignore;
-      ignore[result.last_site] = true;
+      ignore[host] = true;
       chrome.storage.local.set({"ignore": ignore});
-    }
-    window.close();
+      window.close();
+    });
   });
 });
 
@@ -36,16 +44,19 @@ $("#options").click(function() {
 });
 
 $(document).ready(function() {
-  chrome.storage.local.get({"enabled": true, "ignore": {}, "last_site": ""}, function (result) {
+  chrome.storage.local.get({"enabled": true, "ignore": {}}, function (result) {
     if (result.enabled) {
       $("#enable").hide();
     } else {
       $("#disable").hide();
     }
-    if (result.last_site in result.ignore) {
-      $("#disable-site").hide();
-    } else {
-      $("#enable-site").hide();
-    }
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
+      var host = urlToHost(tabs[0].url);
+      if (host in result.ignore) {
+        $("#disable-site").hide();
+      } else {
+        $("#enable-site").hide();
+      }
+    });
   });
 });
