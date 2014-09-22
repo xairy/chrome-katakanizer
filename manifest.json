@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Katakanizer",
-  "version": "0.0.2",
+  "version": "0.0.3",
 
   "description": "An extension that replaces some Russian syllables with matching Japanese kana.",
   "icons": {
