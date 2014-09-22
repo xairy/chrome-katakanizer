@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "exclude_globs": ["*options.html"],
+      "exclude_globs": [],
       "js": ["jquery/jquery-2.1.1.min.js", "katakanizer.js", "on_document_end.js"],
       "run_at": "document_end"
     }
