@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Katakanizer Options</title>
+
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="bootstrap-slider/css/bootstrap-slider.min.css" rel="stylesheet"/>
+
+  <style type='text/css'>
+    .slider-selection {
+      background: #BABABA;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Katakanizer</h1>
+      <p>An extension that replaces some Russian syllables with matching Japanese kana.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="examples">
+      <p>Adjust the slider until you can comfortably read the text below.</p>
+      <div class="well">
+        <input id="frequency" type="text" style="width: 100%;"
+          data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="10" />
+      </div>
+      <div id="sample-text" class="well">
+        <p>В современном японском языке используется три основных системы письма: кандзи — иероглифы китайского происхождения и две слоговые азбуки, созданные в Японии: хирагана и катакана. В самой Японии эта система традиционно называется «смешанное письмо иероглифами и каной».</p>
+        <p>Часто в японском тексте встречаются латинские буквы, используемые для записи распространённых аббревиатур (например, DVD или NATO) и других целей. Транслитерация японского языка латинскими буквами называется ромадзи и встречается в японских текстах редко. Для записи числительных часто используются арабские цифры (обычно в текстах с горизонтальным направлением письма). Исключение какого-либо из перечисленных видов письма или замена одного другим в их принятом употреблении делает текст трудно читаемым или непонятным вовсе (это, пожалуй, не относится к латинским буквам, роль и употребление которых в настоящее время значительно меньше в сравнении с тремя основными системами).</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="jquery/jquery-2.1.1.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="bootstrap-slider/js/bootstrap-slider.min.js"></script>
+  <script src="katakanizer.js"></script>
+  <script src="options.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@
   "name": "Katakanizer",
   "version": "0.0.1",
 
-  "description": "An extension that replaces some Russian syllables with the matching Japanese kana.",
+  "description": "An extension that replaces some Russian syllables with matching Japanese kana.",
   "icons": {
     "128": "logo.png"
   },
@@ -17,11 +17,13 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "exclude_globs": [],
-      "js": ["jquery-2.1.1.min.js", "katakanizer.js"],
+      "exclude_globs": ["*options.html"],
+      "js": ["jquery/jquery-2.1.1.min.js", "katakanizer.js", "on_document_end.js"],
       "run_at": "document_end"
     }
   ],
+
+  "options_page": "options.html",
   "browser_action": {
     "default_icon": "logo.png",
     "default_popup": "popup.html"

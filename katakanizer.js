@@ -1,13 +1,6 @@
-chrome.storage.local.get("enabled", function (result) {
-  if (result.enabled == "true") {
-    katakanizeHtml();
-  }
-});
+var counter = 0.0;
 
-var frequency = 0.15;
-var counter = 0;
-
-function replaceInText(text, dictionary) {
+function replaceInText(text, dictionary, frequency) {
   var regex = "";
 
   var first = true;
@@ -23,9 +16,9 @@ function replaceInText(text, dictionary) {
   }
 
   text = text.replace(new RegExp(regex, "g"), function(matched) {
-    counter++;
-    if (counter >= (1.0 / frequency)) {
-      counter = 0;
+    counter += frequency;
+    if (counter >= 1.0) {
+      counter -= 1.0;
       return dictionary[matched]
     }
     return matched;
@@ -34,7 +27,7 @@ function replaceInText(text, dictionary) {
   return text;
 }
 
-function katakanizeText(text) {
+function katakanizeText(text, frequency) {
   var dict_base_consonants = {
     "ка": "カ", "ки": "キ", "ку": "ク", "ке": "ケ", "кэ": "ケ", "ко": "コ",
     "са": "サ", "си": "シ", "су": "ス", "се": "セ", "сэ": "セ", "со": "ソ",
@@ -52,8 +45,8 @@ function katakanizeText(text) {
     "ва": "ワ", "о": "ヲ", "н": "ン"
   }
 
-  text = replaceInText(text, dict_base_consonants);
-  text = replaceInText(text, dict_base_vowels);
+  text = replaceInText(text, dict_base_consonants, frequency);
+  text = replaceInText(text, dict_base_vowels, frequency);
 
   return text;
 }
@@ -74,10 +67,8 @@ function traverseTextNodes(node, callback) {
   return node;
 }
 
-function katakanizeHtml() {
+function katakanizeHtml(frequency) {
   traverseTextNodes(document.body, function(node) {
-    var html = node.data;
-    html = katakanizeText(html);
-    node.data = html;
+    node.data = katakanizeText(node.data, frequency);
   });
 }
